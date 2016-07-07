@@ -102,7 +102,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Constants.cs" />
     <Compile Include="OAuthFhirClient.cs" />
     <Compile Include="LoginWebView.xaml.cs">
       <DependentUpon>LoginWebView.xaml</DependentUpon>
