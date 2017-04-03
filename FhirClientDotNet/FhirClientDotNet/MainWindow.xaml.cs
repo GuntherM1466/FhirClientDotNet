@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using FhirClientDotNet;
 using Hl7.Fhir.Model;
+using Hl7.Fhir.Rest;
 using Newtonsoft.Json;
 using WpfOidcClient.OidcClient;
 
@@ -35,11 +36,11 @@ namespace WpfOidcClient
         {
             var settings = new OidcSettings
             {
-                Authority = "https://cloud.allscriptsunity.com/authorization",
-                ClientId = "73A72F36-7393-4342-93C3-0896464FBDFB",
-                ClientSecret = "76AF014FB3F9",
+                Authority = "https://tw171.open.allscripts.com/authorization",
+                ClientId = "775285A0-C93A-4E89-985F-3D2AE947E2E4",
+                ClientSecret = "D8933844EEF5",
                 RedirectUri = "urn:ietf:wg:oauth:2.0:oob",
-                Scope = "openid",
+                Scope = "openid patient/*.read launch/patient",
                 LoadUserProfile = true
             };
 
@@ -74,11 +75,12 @@ namespace WpfOidcClient
 
         private Patient GetPatient()
         {
-            string strUri = "https://cloud.allscriptsunity.com/FHIR";
+            string strUri = "http://tw171.open.allscripts.com/fhir/";
             var client = new OAuthFhirClient(strUri, _accessToken);
+            client.PreferredFormat = ResourceFormat.Json;
 
             var patient = (Patient) client.Get("Patient/19");
-
+            
             return patient;
         }
 
